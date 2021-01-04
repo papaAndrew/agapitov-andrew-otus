@@ -1,3 +1,7 @@
+// const fs = require('fs');
+// const path = require('path');
+const lib = require("./module1.js");
+
 const myObject = {
   name: 1,
   items: [
@@ -12,19 +16,16 @@ const myObject = {
   ],
 };
 
-function buildTree(tree, prefix) {
-  const shift = typeof prefix === "undefined" ? "" : prefix;
-
-  tree.forEach((e, i) => {
-    const lastNode = i === tree.length - 1;
-
-    console.log(`${shift}${lastNode ? "└" : "├"} ${e.name}`);
-
-    if (e.items) {
-      buildTree(e.items, `${shift}${lastNode ? " " : "|"} `);
-    }
-  });
-}
-
 console.log(myObject.name);
-buildTree(myObject.items);
+lib.buildTree(myObject.items);
+/* 
+function printDir(path) {
+  
+  const dir = fs.Dir.apply(path);
+  for (const dirent of dir) {
+    console.log(dirent.name);
+  }
+}
+const path = "D:\JavaScript\otus";
+printDir(path);
+ */
