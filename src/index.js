@@ -1,8 +1,6 @@
-// const fs = require('fs');
-// const path = require('path');
 const lib = require("./module1.js");
 
-const myObject = {
+/* const myObject = {
   name: 1,
   items: [
     {
@@ -15,17 +13,19 @@ const myObject = {
     },
   ],
 };
-
-console.log(myObject.name);
-lib.buildTree(myObject.items);
-/* 
-function printDir(path) {
-  
-  const dir = fs.Dir.apply(path);
-  for (const dirent of dir) {
-    console.log(dirent.name);
-  }
-}
-const path = "D:\JavaScript\otus";
-printDir(path);
  */
+const [anyPath, keyName, keyValue] = process.argv.slice(2, 5);
+// let [anyPath, keyName, keyValue] = [".", "--depth", "2"];
+
+try {
+  //  расшифровка параметров
+  const [rootPath, depth] = lib.parseCLI([anyPath, keyName, keyValue]);
+  if (rootPath) {
+    // строим дерево
+    const tree = lib.buildTree(rootPath, depth);
+    // печать
+    lib.drawTree(tree);
+  }
+} catch (err) {
+  console.error(err);
+}
