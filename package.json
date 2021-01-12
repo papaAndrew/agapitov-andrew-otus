@@ -9,7 +9,9 @@
     "lint:fix": "prettier --write . && eslint . --fix",
     "start": "webpack-dev-server --mode development",
     "dev": "webpack serve",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "tree": "node ./src/index.js",
+    "tree:sample": "node ./src/index.js . -d 2"
   },
   "repository": {
     "type": "git",
